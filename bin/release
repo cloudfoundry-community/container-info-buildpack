@@ -5,7 +5,7 @@
 cat <<EOF
 ---
 config_vars:
-  RACK_ENV: production
+  PATH: \$HOME/vendor/shellinabox/bin:\$PATH
 default_process_type:
-  web: shellinabox -p $PORT
+  web: shellinabox -p \$PORT
 EOF

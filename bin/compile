@@ -40,12 +40,9 @@ SHELLINABOX_URL="http://ci-labs-buildpack-downloads.s3.amazonaws.com/shellinabox
 VENDORED_SHELLINABOX="${BUILD_DIR}/vendor/shellinabox"
 
 # download and unpack packages
-echo "-----> Fetching Shell-in-a-Box"
+echo "-----> Installing Shell-in-a-Box"
 package_download "${SHELLINABOX_URL}" "${VENDORED_SHELLINABOX}"
 
-echo "-----> Building runtime environment"
-mkdir -p $BUILD_DIR/.profile.d
-echo "export PATH=\"\$HOME/bin:\$HOME/vendor/shellinabox/bin:\$PATH\"" > $BUILD_DIR/.profile.d/shellinabox.sh
 
 
 
