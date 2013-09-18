@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# bin/detect <build-dir>
+
+echo "container-info-buildpack" && exit 0

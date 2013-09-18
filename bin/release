@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# bin/release <build-dir>
+
+cat <<EOF
+---
+config_vars:
+  RACK_ENV: production
+default_process_type:
+  web: shellinabox -p $PORT
+EOF

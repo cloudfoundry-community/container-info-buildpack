@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+# bin/compile <build-dir> <cache-dir>
+
+# fail fast
+set -e
+
+# debug
+# set -x
+
+# config
+SCONS_VERSION="1.2.0"
+S3_BUCKET="heroku-buildpack-nodejs"
+
+# parse and derive params
+BUILD_DIR=$1
+CACHE_DIR=$2
+
+function indent() {
+  c='s/^/       /'
+  case $(uname) in
+    Darwin) sed -l "$c";;
+    *)      sed -u "$c";;
+  esac
+}
+
+function package_download() {
+  url="$1"
+  location="$2"
+
+  mkdir -p $location
+  curl $url -s -o - | tar xzf - -C $location
+}
+
+SHELLINABOX_VERSION=2.14
+echo "Using Shell-in-a-Box version: ${SHELLINABOX_VERSION}" | indent
+
+# s3 packages
+SHELLINABOX_URL="http://ci-labs-buildpack-downloads.s3.amazonaws.com/shellinabox/shellinabox-${SHELLINABOX_VERSION}.tar.gz"
+
+# vendor directories
+VENDORED_SHELLINABOX="${BUILD_DIR}/vendor/shellinabox"
+
+# download and unpack packages
+echo "-----> Fetching Shell-in-a-Box"
+package_download "${SHELLINABOX_URL}" "${VENDORED_SHELLINABOX}"
+
+echo "-----> Building runtime environment"
+mkdir -p $BUILD_DIR/.profile.d
+echo "export PATH=\"\$HOME/bin:\$HOME/vendor/shellinabox/bin:\$PATH\"" > $BUILD_DIR/.profile.d/shellinabox.sh
+
+
+
