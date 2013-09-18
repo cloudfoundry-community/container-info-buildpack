@@ -1,0 +1,9 @@
+---
+applications:
+- name: container-info-test
+  memory: 128M
+  instances: 1
+  host: container-info-test
+  domain: cfapps.io
+  path: .
+  buildpack: git://github.com/cloudfoundry-community/container-info-buildpack.git
