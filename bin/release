@@ -4,7 +4,8 @@
 
 cat <<EOF
 config_vars:
+  MYENV: foo
   PATH: \$HOME/vendor/shellinabox/bin:\$PATH
 default_process_types:
-  web: shellinabox -p \$PORT
+  web: \$HOME/vendor/shellinabox/bin/shellinabox -p \$PORT
 EOF
