@@ -3,7 +3,6 @@
 # bin/release <build-dir>
 
 cat <<EOF
----
 config_vars:
   PATH: \$HOME/vendor/shellinabox/bin:\$PATH
 default_process_type:
