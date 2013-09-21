@@ -149,8 +149,6 @@ function package_download() {
 
 #Download Cloud9 IDE into $BUILD_DIR
 fetch_cloud9
-ls -la $BUILD_DIR
-cat $BUILD_DIR/package.json
 
 bootstrap_node=$(mktmpdir bootstrap_node)
 package_download "nodejs" "0.4.7" $bootstrap_node
