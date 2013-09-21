@@ -145,6 +145,7 @@ function package_download() {
     package_fetch_from_curl $package_name $destination
   fi
   tar xzf $package_name -C $location
+  rm -f $package_name
 }
 
 #Download Cloud9 IDE into $BUILD_DIR
@@ -222,8 +223,6 @@ run_npm "install --production"
 run_npm "rebuild"
 echo "Dependencies installed" | indent
 
-# Cleanup
-rm -f $BUILD_DIR/*.tgz
 
 
 
