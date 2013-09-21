@@ -221,6 +221,9 @@ run_npm "install --production"
 run_npm "rebuild"
 echo "Dependencies installed" | indent
 
+# Cleanup
+rm -f $BUILD_DIR/*.tgz
+
 
 
 
