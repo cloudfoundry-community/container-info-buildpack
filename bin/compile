@@ -148,7 +148,7 @@ function package_download() {
 }
 
 #Download Cloud9 IDE into $BUILD_DIR
-echo "----> Fetching Cloud9 IDE (v${CLOUD9_VERSION})"
+echo "-----> Fetching Cloud9 IDE (version: ${CLOUD9_VERSION})"
 fetch_cloud9
 
 bootstrap_node=$(mktmpdir bootstrap_node)
