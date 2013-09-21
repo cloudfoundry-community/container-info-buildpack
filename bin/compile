@@ -151,7 +151,7 @@ function package_download() {
 #Download Cloud9 IDE into $BUILD_DIR
 echo "-----> Fetching Cloud9 IDE (version: ${CLOUD9_VERSION})"
 fetch_cloud9
-echo "-----> Patching Cloud9 patches"
+echo "-----> Patching Cloud9 IDE"
 pushd $BUILD_DIR
 patch -p0 < $LP_DIR/vendor/cloud9-patches/smithio_port.patch
 popd
