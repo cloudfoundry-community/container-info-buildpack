@@ -4,8 +4,7 @@
 
 cat <<EOF
 config_vars:
-  MYENV: foo
-  PATH: \$HOME/vendor/shellinabox/bin:\$PATH
+  PATH: bin:node_modules/.bin:/usr/local/bin:/usr/bin:/bin
 default_process_types:
-  web: \$HOME/vendor/shellinabox/bin/shellinaboxd -p \$PORT --disable-ssl --debug
+  web: bin/cloud9.sh -w ~/ -l 0.0.0.0 -p \$PORT 
 EOF
