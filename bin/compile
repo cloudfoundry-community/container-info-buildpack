@@ -6,7 +6,7 @@
 set -e
 
 # debug
-#set -x
+set -x
 
 # clean up leaking environment
 unset GIT_DIR
@@ -118,7 +118,7 @@ function fetch_cloud9() {
   filename="v${CLOUD9_VERSION}.tar.gz"
   download_url="https://github.com/ajaxorg/cloud9/archive/${filename}"
 
-  curl $download_url -s -o ${BUILD_DIR}/${filename}
+  curl -L $download_url -s -o ${BUILD_DIR}/${filename}
   tar xzf ${BUILD_DIR}/${filename} -C ${BUILD_DIR}
 }
 
