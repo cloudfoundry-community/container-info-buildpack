@@ -115,8 +115,8 @@ function package_fetch_from_cache() {
 }
 
 function fetch_cloud9() {
-  filename="cloud9-v${CLOUD9_VERSION}.zip"
-  download_url="https://github.com/ajaxorg/cloud9/archive/${CLOUD9_VERSION}.zip"
+  filename="cloud9-v${CLOUD9_VERSION}.tar.gz"
+  download_url="https://github.com/ajaxorg/cloud9/archive/${CLOUD9_VERSION}.tar.gz"
 
   curl -L $download_url -s -o ${BUILD_DIR}/${filename}
   tar xzf ${BUILD_DIR}/${filename} -C ${BUILD_DIR} --strip 1
