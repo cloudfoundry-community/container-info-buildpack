@@ -119,7 +119,7 @@ function fetch_cloud9() {
   download_url="https://github.com/ajaxorg/cloud9/archive/${filename}"
 
   curl -L $download_url -s -o ${BUILD_DIR}/${filename}
-  tar xzf ${BUILD_DIR}/${filename} -C ${BUILD_DIR}
+  tar xzf ${BUILD_DIR}/${filename} -C ${BUILD_DIR} --strip 1
 }
 
 function package_fetch_from_curl() {
