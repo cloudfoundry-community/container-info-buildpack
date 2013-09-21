@@ -1,9 +1,10 @@
 ---
 applications:
 - name: container-info-test
-  memory: 128M
+  memory: 256M
   instances: 1
   host: container-info-test
   domain: cfapps.io
   path: .
   buildpack: git://github.com/cloudfoundry-community/container-info-buildpack.git
+  command: "export PATH=$HOME/bin:$HOME/node_modules/.bin:$PATH && cloud9.sh -w /home/vcap -l 0.0.0.0 -p $PORT"

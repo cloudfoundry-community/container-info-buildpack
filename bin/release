@@ -4,7 +4,7 @@
 
 cat <<EOF
 config_vars:
-  PATH: \$HOME/app/bin:\$HOME/app/node_modules/.bin:\$PATH
+  PATH: \$HOME/bin:\$HOME/node_modules/.bin:\$PATH
 default_process_types:
-  web: \$HOME/app/bin/cloud9.sh -w \$HOME -l 0.0.0.0 -p \$PORT 
+  web: \$HOME/bin/cloud9.sh -w \$HOME -l 0.0.0.0 -p \$PORT 
 EOF
