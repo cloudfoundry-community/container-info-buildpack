@@ -93,9 +93,12 @@ http {
     listen <%= ENV["PORT"] %>;
     server_name localhost;
 
-    location ~ /\.ht { deny  all; }
-    location /files/ {
-      alias <%= ENV["HOME"] %>/../;
+    location /root/ {
+      alias /;
+      autoindex on;
+    }
+    location /app/ {
+      alias <%= ENV["HOME"] %>/;
       autoindex on;
     }
 
