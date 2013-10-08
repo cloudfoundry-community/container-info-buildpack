@@ -8,7 +8,7 @@ http {
   log_format cloudfoundry '$http_x_forwarded_for - $http_referer - [$time_local] "$request" $status $body_bytes_sent';
   access_log <%= ENV["HOME"] %>/../logs/access.log cloudfoundry;
   
-  default_type application/octet-stream;
+  default_type text/plain;
 
   types {
     text/html html htm shtml;
@@ -94,7 +94,7 @@ http {
     server_name localhost;
 
     location ~ /\.ht { deny  all; }
-    location /files {
+    location /files/ {
       alias <%= ENV["HOME"] %>/../;
       autoindex on;
     }
