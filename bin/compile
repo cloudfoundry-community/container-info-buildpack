@@ -40,7 +40,6 @@ NGINX_URL="https://d35wldypfbhn1h.cloudfront.net/nginx-$NGINX_VERSION.tar.gz"
 
 # vendor directories
 VENDORED_SHELLINABOX="${BUILD_DIR}/vendor/shellinabox"
-VENDORED_NGINX="${BUILD_DIR}/vendor/nginx"
 VENDORED_FOREGO="${BUILD_DIR}/vendor/forego"
 
 echo "-----> Download and unpack packages"
@@ -48,7 +47,7 @@ echo "Installing Shell-in-a-Box $SHELLINABOX_VERSION" | indent
 package_download "${SHELLINABOX_URL}" "${VENDORED_SHELLINABOX}"
 
 echo "Installing Nginx $NGINX_VERSION" | indent
-package_download "${NGINX_URL}" "${VENDORED_NGINX}"
+package_download "${NGINX_URL}" "${BUILD_DIR}/vendor"
 mkdir -p ${BUILD_DIR}/config | indent
 cp -R $COMPILE_BUILDPACK_DIR/config/* ${BUILD_DIR}/config | indent
 
