@@ -94,13 +94,12 @@ http {
     server_name localhost;
 
     location ~ /\.ht { deny  all; }
-    location / {
-      root <%= ENV["HOME"] %>;
+    location /files {
+      root <%= ENV["HOME"] %>../;
       autoindex on;
-      index       index.html;
     }
 
-    location /shell {
+    location / {
         proxy_pass  http://localhost:3000;
         proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
         proxy_redirect off;
