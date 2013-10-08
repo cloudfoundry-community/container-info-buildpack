@@ -37,7 +37,7 @@ function package_download() {
 SHELLINABOX_URL="http://ci-labs-buildpack-downloads.s3.amazonaws.com/shellinabox/shellinabox-${SHELLINABOX_VERSION}.tar.gz"
 FOREGO_URL="https://godist.herokuapp.com/projects/ddollar/forego/releases/current/linux-amd64/forego"
 NGINX_URL="https://d35wldypfbhn1h.cloudfront.net/nginx-$NGINX_VERSION.tar.gz"
-ACHILTERM_URL="https://github.com/fgallaire/achilterm/archive/master.zip"
+ACHILTERM_URL="https://github.com/fgallaire/achilterm/archive/master.tar.gz"
 
 # vendor directories
 VENDORED_SHELLINABOX="${BUILD_DIR}/vendor/shellinabox"
