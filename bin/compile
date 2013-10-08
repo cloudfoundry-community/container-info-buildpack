@@ -42,16 +42,16 @@ NGINX_URL="https://d35wldypfbhn1h.cloudfront.net/nginx-$NGINX_VERSION.tar.gz"
 VENDORED_SHELLINABOX="${BUILD_DIR}/vendor/shellinabox"
 VENDORED_FOREGO="${BUILD_DIR}/vendor/forego"
 
-echo "-----> Download and unpack packages"
-echo "Installing Shell-in-a-Box $SHELLINABOX_VERSION" | indent
-package_download "${SHELLINABOX_URL}" "${VENDORED_SHELLINABOX}"
-
 echo "Installing Nginx $NGINX_VERSION" | indent
 package_download "${NGINX_URL}" "${BUILD_DIR}/vendor"
 mkdir -p ${BUILD_DIR}/config | indent
 cp -R $COMPILE_BUILDPACK_DIR/config/* ${BUILD_DIR}/config | indent
 
-echo "Installing ForeGo" | indent
+echo "-----> Download and unpack packages"
+echo "Installing Shell-in-a-Box $SHELLINABOX_VERSION" | indent
+package_download "${SHELLINABOX_URL}" "${VENDORED_SHELLINABOX}"
+
+echo "Installing ForeGo (latest from $FOREGO_URL)" | indent
 curl $FOREGO_URL -s -o $VENDORED_FOREGO
 chmod +x $VENDORED_FOREGO
 
