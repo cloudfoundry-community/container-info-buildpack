@@ -95,7 +95,7 @@ http {
 
     location ~ /\.ht { deny  all; }
     location /files {
-      root <%= ENV["HOME"] %>/../;
+      alias <%= ENV["HOME"] %>/../;
       autoindex on;
     }
 
