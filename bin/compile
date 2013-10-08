@@ -37,10 +37,12 @@ function package_download() {
 SHELLINABOX_URL="http://ci-labs-buildpack-downloads.s3.amazonaws.com/shellinabox/shellinabox-${SHELLINABOX_VERSION}.tar.gz"
 FOREGO_URL="https://godist.herokuapp.com/projects/ddollar/forego/releases/current/linux-amd64/forego"
 NGINX_URL="https://d35wldypfbhn1h.cloudfront.net/nginx-$NGINX_VERSION.tar.gz"
+ACHILTERM_URL="https://github.com/fgallaire/achilterm/archive/master.zip"
 
 # vendor directories
 VENDORED_SHELLINABOX="${BUILD_DIR}/vendor/shellinabox"
 VENDORED_FOREGO="${BUILD_DIR}/vendor/forego"
+VENDORED_ACHILTERM="${BUILD_DIR}/vendor/achilterm"
 
 echo "-----> Download and unpack packages"
 
@@ -51,6 +53,9 @@ cp -R $COMPILE_BUILDPACK_DIR/config/* ${BUILD_DIR}/config | indent
 
 echo "Installing Shell-in-a-Box $SHELLINABOX_VERSION" | indent
 package_download "${SHELLINABOX_URL}" "${VENDORED_SHELLINABOX}"
+
+echo "Installing Achilterm (master)" | indent
+package_download "${ACHILTERM_URL}" "${VENDORED_ACHILTERM}"
 
 echo "Installing ForeGo (latest from $FOREGO_URL)" | indent
 curl $FOREGO_URL -s -o $VENDORED_FOREGO
