@@ -7,5 +7,5 @@ config_vars:
   MYENV: foo
   PATH: \$HOME/vendor/shellinabox/bin:\$PATH
 default_process_types:
-  web: \$HOME/vendor/shellinabox/bin/shellinaboxd -p \$PORT --disable-ssl --debug
+  web: \$HOME/vendor/forego start -p \$PORT
 EOF

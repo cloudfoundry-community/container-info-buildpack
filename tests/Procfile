@@ -1,0 +1,2 @@
+shellinabox: $HOME/vendor/shellinabox/bin/shellinaboxd -p $PORT --disable-ssl --debug
+nginx: erb $HOME/config/nginx.conf.erb > $HOME/config/nginx.conf && $HOME/vendor/nginx/sbin/nginx -p $HOME/vendor/nginx -c $HOME/config/nginx.conf
