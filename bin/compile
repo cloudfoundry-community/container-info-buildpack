@@ -33,8 +33,6 @@ function package_download() {
   curl $url -s -o - | tar xzf - -C $location
 }
 
-echo "Using Shell-in-a-Box version: ${SHELLINABOX_VERSION}" | indent
-
 # s3 packages
 SHELLINABOX_URL="http://ci-labs-buildpack-downloads.s3.amazonaws.com/shellinabox/shellinabox-${SHELLINABOX_VERSION}.tar.gz"
 FOREGO_URL="https://godist.herokuapp.com/projects/ddollar/forego/releases/current/linux-amd64/forego"
@@ -52,7 +50,7 @@ package_download "${SHELLINABOX_URL}" "${VENDORED_SHELLINABOX}"
 echo "Installing Nginx $NGINX_VERSION" | indent
 package_download "${NGINX_URL}" "${VENDORED_NGINX}"
 mkdir -p ${BUILD_DIR}/config | indent
-cp -R $COMPILE_BUILDPACK_DIR/config/ ${BUILD_DIR}/config/ | indent
+cp -R $COMPILE_BUILDPACK_DIR/config/* ${BUILD_DIR}/config | indent
 
 echo "Installing ForeGo" | indent
 curl $FOREGO_URL -s -o $VENDORED_FOREGO
