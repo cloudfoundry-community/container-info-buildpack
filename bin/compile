@@ -9,8 +9,7 @@ set -e
 #set -x
 
 # config
-SHELLINABOX_VERSION="2.14"
-NGINX_VERSION="1.4.1"
+OPENRESTY_VERSION="1.2.8.6"
 
 # parse and derive params
 BUILD_DIR=$1
@@ -34,32 +33,27 @@ function package_download() {
 }
 
 # s3 packages
-SHELLINABOX_URL="http://ci-labs-buildpack-downloads.s3.amazonaws.com/shellinabox/shellinabox-${SHELLINABOX_VERSION}.tar.gz"
 FOREGO_URL="https://godist.herokuapp.com/projects/ddollar/forego/releases/current/linux-amd64/forego"
-NGINX_URL="https://d35wldypfbhn1h.cloudfront.net/nginx-$NGINX_VERSION.tar.gz"
+OPENRESTY_URL="http://ci-labs-buildpack-downloads.s3.amazonaws.com/openresty/openresty-$OPENRESTY_VERSION.tar.gz"
 ACHILTERM_URL="https://github.com/fgallaire/achilterm/archive/master.tar.gz"
 WEBOB_URL="https://pypi.python.org/packages/source/W/WebOb/WebOb-1.2.3.tar.gz"
 
 # vendor directories
-VENDORED_SHELLINABOX="${BUILD_DIR}/vendor/shellinabox"
+VENDORED_OPENRESTY="${BUILD_DIR}/vendor/openresty"
 VENDORED_FOREGO="${BUILD_DIR}/vendor/forego"
 VENDORED_ACHILTERM="${BUILD_DIR}/vendor/achilterm"
 VENDORED_WEBOB="${BUILD_DIR}/vendor/achilterm/lib"
 
 echo "-----> Download and unpack packages"
 
-echo "Installing Nginx $NGINX_VERSION" | indent
-package_download "${NGINX_URL}" "${BUILD_DIR}/vendor"
+echo "Installing OpenResty (Nginx app server) $OPENRESTY_VERSION" | indent
+package_download "${OPENRESTY_URL}" "${VENDORED_OPENRESTY}"
 mkdir -p ${BUILD_DIR}/config | indent
 cp -R $COMPILE_BUILDPACK_DIR/config/* ${BUILD_DIR}/config | indent
-
-echo "Installing Shell-in-a-Box $SHELLINABOX_VERSION" | indent
-package_download "${SHELLINABOX_URL}" "${VENDORED_SHELLINABOX}"
 
 echo "Installing Achilterm (master)" | indent
 package_download "${ACHILTERM_URL}" "${VENDORED_ACHILTERM}"
 package_download "${WEBOB_URL}" "${VENDORED_WEBOB}"
-
 
 echo "Installing ForeGo (latest from $FOREGO_URL)" | indent
 curl $FOREGO_URL -s -o $VENDORED_FOREGO
