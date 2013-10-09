@@ -40,7 +40,9 @@ OPENRESTY_URL="http://ci-labs-buildpack-downloads.s3.amazonaws.com/openresty/ope
 VENDORED_OPENRESTY="${BUILD_DIR}/vendor/openresty"
 VENDORED_FOREGO="${BUILD_DIR}/vendor/forego"
 
-echo "-----> Download and unpack packages"
+
+echo "-----> Download and unpack packages into app/vendor/"
+mkdir -p ${BUILD_DIR}/vendor
 
 echo "Installing ForeGo (latest from $FOREGO_URL)" | indent
 curl $FOREGO_URL -s -o $VENDORED_FOREGO
