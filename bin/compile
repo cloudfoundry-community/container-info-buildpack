@@ -35,16 +35,16 @@ function package_download() {
 # s3 packages
 FOREGO_URL="https://godist.herokuapp.com/projects/ddollar/forego/releases/current/linux-amd64/forego"
 OPENRESTY_URL="http://ci-labs-buildpack-downloads.s3.amazonaws.com/openresty/openresty-$OPENRESTY_VERSION.tar.gz"
-ACHILTERM_URL="https://github.com/fgallaire/achilterm/archive/master.tar.gz"
-WEBOB_URL="https://pypi.python.org/packages/source/W/WebOb/WebOb-1.2.3.tar.gz"
 
 # vendor directories
 VENDORED_OPENRESTY="${BUILD_DIR}/vendor/openresty"
 VENDORED_FOREGO="${BUILD_DIR}/vendor/forego"
-VENDORED_ACHILTERM="${BUILD_DIR}/vendor/achilterm"
-VENDORED_WEBOB="${BUILD_DIR}/vendor/achilterm/lib"
 
 echo "-----> Download and unpack packages"
+
+echo "Installing ForeGo (latest from $FOREGO_URL)" | indent
+curl $FOREGO_URL -s -o $VENDORED_FOREGO
+chmod +x $VENDORED_FOREGO
 
 echo "Installing OpenResty (Nginx app server) $OPENRESTY_VERSION" | indent
 package_download "${OPENRESTY_URL}" "${VENDORED_OPENRESTY}"
@@ -56,13 +56,6 @@ popd
 mkdir -p ${BUILD_DIR}/config | indent
 cp -R $COMPILE_BUILDPACK_DIR/config/* ${BUILD_DIR}/config | indent
 
-echo "Installing Achilterm (master)" | indent
-package_download "${ACHILTERM_URL}" "${VENDORED_ACHILTERM}"
-package_download "${WEBOB_URL}" "${VENDORED_WEBOB}"
-
-echo "Installing ForeGo (latest from $FOREGO_URL)" | indent
-curl $FOREGO_URL -s -o $VENDORED_FOREGO
-chmod +x $VENDORED_FOREGO
 
 
 
