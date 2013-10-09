@@ -38,11 +38,13 @@ SHELLINABOX_URL="http://ci-labs-buildpack-downloads.s3.amazonaws.com/shellinabox
 FOREGO_URL="https://godist.herokuapp.com/projects/ddollar/forego/releases/current/linux-amd64/forego"
 NGINX_URL="https://d35wldypfbhn1h.cloudfront.net/nginx-$NGINX_VERSION.tar.gz"
 ACHILTERM_URL="https://github.com/fgallaire/achilterm/archive/master.tar.gz"
+WEBOB_URL="https://pypi.python.org/packages/source/W/WebOb/WebOb-1.2.3.tar.gz"
 
 # vendor directories
 VENDORED_SHELLINABOX="${BUILD_DIR}/vendor/shellinabox"
 VENDORED_FOREGO="${BUILD_DIR}/vendor/forego"
 VENDORED_ACHILTERM="${BUILD_DIR}/vendor/achilterm"
+VENDORED_WEBOB="${BUILD_DIR}/vendor/achilterm/lib/webob"
 
 echo "-----> Download and unpack packages"
 
@@ -56,6 +58,8 @@ package_download "${SHELLINABOX_URL}" "${VENDORED_SHELLINABOX}"
 
 echo "Installing Achilterm (master)" | indent
 package_download "${ACHILTERM_URL}" "${VENDORED_ACHILTERM}"
+package_download "${WEBOB_URL}" "${VENDORED_WEBOB}"
+
 
 echo "Installing ForeGo (latest from $FOREGO_URL)" | indent
 curl $FOREGO_URL -s -o $VENDORED_FOREGO
