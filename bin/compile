@@ -44,7 +44,7 @@ WEBOB_URL="https://pypi.python.org/packages/source/W/WebOb/WebOb-1.2.3.tar.gz"
 VENDORED_SHELLINABOX="${BUILD_DIR}/vendor/shellinabox"
 VENDORED_FOREGO="${BUILD_DIR}/vendor/forego"
 VENDORED_ACHILTERM="${BUILD_DIR}/vendor/achilterm"
-VENDORED_WEBOB="${BUILD_DIR}/vendor/achilterm/lib/webob"
+VENDORED_WEBOB="${BUILD_DIR}/vendor/achilterm/lib"
 
 echo "-----> Download and unpack packages"
 
