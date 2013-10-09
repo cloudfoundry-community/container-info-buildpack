@@ -1,2 +1,1 @@
-nginx: erb $HOME/config/nginx.conf.erb > $HOME/config/nginx.conf && env && /app/vendor/openresty/nginx/sbin/nginx -c $HOME/config/nginx.conf
-achilterm: PYTHONPATH=$HOME/vendor/achilterm/lib/WebOb-1.2.3:$PYTHONPATH $HOME/vendor/achilterm/achilterm-master/achilterm.py
+openresty: erb $HOME/nginx.conf.erb > $HOME/config/nginx.conf && /app/vendor/openresty/nginx/sbin/nginx -c $HOME/config/nginx.conf
