@@ -30,7 +30,7 @@ trap cleanup EXIT
 cd $temp_dir
 echo "-----> Temp dir: $temp_dir"
 
-echo "$(tput setaf 2)Downloading openresty...$(tput sgr0)"
+echo "$(tput setaf 2)Downloading openresty...$(tput sgr0)"	
 curl -L "http://openresty.org/download/$openresty_tar" | tar xf -
 echo "$(tput setaf 2)Downloading pcre...$(tput sgr0)"
 pushd $temp_dir/ngx_openresty-${OPENRESTY_VERSION}
@@ -40,7 +40,7 @@ popd
 echo "-----> Building using vulcan"
 
 echo "$(tput setaf 2)Building openresty...$(tput sgr0)"
-vulcan build -o ${BUILD_OUTPUT} -s $temp_dir/ngx_openresty-${OPENRESTY_VERSION} -v -p /tmp/openresty -c "PATH=/sbin:\$PATH ./configure --with-pcre=pcre-8.33 --with-luajit --with-http_postgres_module --prefix=/app/vendor/openresty && make && make DESTDIR=/tmp/openresty install"
+vulcan build -o ${BUILD_OUTPUT} -s $temp_dir/ngx_openresty-${OPENRESTY_VERSION} -v -p /app/vendor/openresty -c "PATH=/sbin:\$PATH ./configure --with-pcre=pcre-8.33 --with-luajit --with-http_postgres_module --prefix=/app/vendor/openresty && make && make install"
 
 echo "-----> Build at: ${BUILD_OUTPUT}"
 

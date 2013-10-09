@@ -48,6 +48,11 @@ echo "-----> Download and unpack packages"
 
 echo "Installing OpenResty (Nginx app server) $OPENRESTY_VERSION" | indent
 package_download "${OPENRESTY_URL}" "${VENDORED_OPENRESTY}"
+echo "Fixing luajit/lib symlinks..." | indent
+pushd ${VENDORED_OPENRESTY}/luajit/lib
+ln -s libluajit-5.1.so.2.0.2 libluajit-5.1.so.2
+ln -s libluajit-5.1.so.2.0.2 libluajit-5.1.so
+popd
 mkdir -p ${BUILD_DIR}/config | indent
 cp -R $COMPILE_BUILDPACK_DIR/config/* ${BUILD_DIR}/config | indent
 

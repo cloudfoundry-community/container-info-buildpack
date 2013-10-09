@@ -98,8 +98,12 @@ http {
       autoindex on;
     }
 
-    location /ls { 
-        content_by_lua 'os.execute("ls -lah")'; 
+    location /env { 
+        content_by_lua 'os.execute("env")'; 
+    } 
+
+    location /whoami { 
+        content_by_lua 'os.execute("whoami")'; 
     } 
 
     location /achilterm/ {
