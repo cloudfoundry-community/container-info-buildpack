@@ -250,7 +250,7 @@ module.exports = function (grunt) {
             'bower_components/bootstrap/dist/**/*',
             'bower_components/es5-shim/*.min.js',
             'bower_components/font-awesome/{css,font}/**/*',
-            'bower_components/jquery/*.min.js',
+            'bower_components/jquery/*.min.*',
             'bower_components/json3/lib/*',
             'images/{,*/}*.{gif,webp}',
             'styles/fonts/*'
