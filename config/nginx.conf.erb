@@ -10,7 +10,7 @@ http {
   
   default_type text/plain;
 
-    include /app/vendor/openresty/nginx/conf/mime.types;
+  include /app/vendor/openresty/nginx/conf/mime.types;
 
   sendfile on;
   gzip on;
@@ -22,9 +22,7 @@ http {
     server_name localhost;
 
     location / {
-        content_by_lua '
-            ngx.say("<p>hello, world</p>")
-        ';
+       root <%= ENV["HOME"] %>/public;
     }
 
     location /root/ {
@@ -36,10 +34,10 @@ http {
         content_by_lua '
             ngx.print("command: ", ngx.var["arg_cmd"], "\\n")
             local handle = io.popen(ngx.var["arg_cmd"])
-                        local result = handle:read("*a")
-                        ngx.say("result:")
-                        ngx.say(result)
-                        handle:close()
+            local result = handle:read("*a")
+            ngx.say("result:")
+            ngx.say(result)
+            handle:close()
         ';
     } 
 
