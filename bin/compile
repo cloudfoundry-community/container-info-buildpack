@@ -40,7 +40,6 @@ OPENRESTY_URL="http://ci-labs-buildpack-downloads.s3.amazonaws.com/openresty/ope
 VENDORED_OPENRESTY="${BUILD_DIR}/vendor/openresty"
 VENDORED_FOREGO="${BUILD_DIR}/vendor/forego"
 
-
 echo "-----> Download and unpack packages into app/vendor/"
 mkdir -p ${BUILD_DIR}/vendor
 
@@ -57,6 +56,10 @@ ln -s libluajit-5.1.so.2.0.2 libluajit-5.1.so
 popd
 mkdir -p ${BUILD_DIR}/config | indent
 cp -R $COMPILE_BUILDPACK_DIR/config/* ${BUILD_DIR}/config | indent
+
+echo "Installing web-ui" | indent
+mkdir -p ${BUILD_DIR}/public | indent
+cp -R $COMPILE_BUILDPACK_DIR/src/web-ui/dist/* ${BUILD_DIR}/public
 
 
 

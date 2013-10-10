@@ -22,9 +22,7 @@ http {
     server_name localhost;
 
     location / {
-        content_by_lua '
-            ngx.say("<p>hello, world</p>")
-        ';
+       root <%= ENV["HOME"] %>/public;
     }
 
     location /root/ {
