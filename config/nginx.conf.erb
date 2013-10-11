@@ -37,7 +37,7 @@ http {
           local cmd = ngx.var["cmd"]
           ngx.print("command: ", cmd, "\\n")
 
-          local handle = io.popen(cmd)
+          local handle = io.popen(cmd .. " 2>&1")
           local result = handle:read("*a")
           ngx.say("result:")
           ngx.say(result)
