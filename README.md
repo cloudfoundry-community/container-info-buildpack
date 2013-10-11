@@ -9,7 +9,7 @@ _NB!_ The app you deploy has *no* security.  Make sure you delete it when you ar
 
 Push a new "empty" app
 ```
-$ mkdir container_info && cf container_info
+$ mkdir container_info && cd container_info
 $ touch killroy_was_here
 $ cf push --buildpack=git://github.com/cloudfoundry-community/container-info-buildpack.git --memory=64 --instances=1 --no-bind-services --no-create-services
 
