@@ -7,14 +7,18 @@
 
 <div class="row">
     <h4>Run remote command</h4>
-    <p>
-        <input ng-model="cmd" placeholder="eg: ls app">
-        <button ng-click="execute_command(cmd)">Execute</button>
-    </p>
-    <div class="results">
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <input class="form-control" style="width:200px" ng-model="cmd" placeholder="eg: ls app">
+            <button type="button" class="btn btn-primary" ng-click="execute_command(cmd)">Execute</button>
+        </div>
+    </form>
+    <div class="top-buffer">
         <pre>{{cmd_results}}</pre>
     </div>
 </div>
+
+<hr> 
 
 <div class="row">
     <h4>Browse container filesystem</h4>
