@@ -60,7 +60,7 @@ cp $COMPILE_BUILDPACK_DIR/config/nginx.conf.erb ${BUILD_DIR}/config | indent
 
 echo "Installing Ohai" | indent
 mkdir $VENDORED_GEMS
-GEM_HOME=$VENDORED_GEMS gem install ohai
+GEM_HOME=$VENDORED_GEMS gem install ohai | indent
 
 echo "Installing web-ui" | indent
 mkdir -p ${BUILD_DIR}/public | indent
