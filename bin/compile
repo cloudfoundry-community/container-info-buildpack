@@ -39,6 +39,7 @@ OPENRESTY_URL="http://ci-labs-buildpack-downloads.s3.amazonaws.com/openresty/ope
 # vendor directories
 VENDORED_OPENRESTY="${BUILD_DIR}/vendor/openresty"
 VENDORED_FOREGO="${BUILD_DIR}/vendor/forego"
+VENDORED_GEMS="${BUILD_DIR}/vendor/gems"
 
 echo "-----> Download and unpack packages into app/vendor/"
 mkdir -p ${BUILD_DIR}/vendor
@@ -55,13 +56,19 @@ ln -s libluajit-5.1.so.2.0.2 libluajit-5.1.so.2
 ln -s libluajit-5.1.so.2.0.2 libluajit-5.1.so
 popd
 mkdir -p ${BUILD_DIR}/config | indent
-cp -R $COMPILE_BUILDPACK_DIR/config/* ${BUILD_DIR}/config | indent
+cp $COMPILE_BUILDPACK_DIR/config/nginx.conf.erb ${BUILD_DIR}/config | indent
+
+echo "Installing Ohai" | indent
+mkdir $VENDORED_GEMS
+GEM_HOME=$VENDORED_GEMS gem install ohai
 
 echo "Installing web-ui" | indent
 mkdir -p ${BUILD_DIR}/public | indent
 cp -R $COMPILE_BUILDPACK_DIR/src/web-ui/dist/* ${BUILD_DIR}/public
 
-
+echo "-----> Setup startup options (Procfile & .env)"
+cp $COMPILE_BUILDPACK_DIR/config/.env ${BUILD_DIR}
+cp $COMPILE_BUILDPACK_DIR/config/Procfile ${BUILD_DIR}
 
 
 

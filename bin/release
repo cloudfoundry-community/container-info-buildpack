@@ -4,8 +4,7 @@
 
 cat <<EOF
 config_vars:
-  MYENV: foo
-  PATH: \$HOME/vendor/shellinabox/bin:\$PATH
+  DOESNT: work
 default_process_types:
   web: \$HOME/vendor/forego start -p \$PORT
 EOF

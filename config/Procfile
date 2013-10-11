@@ -1,0 +1,1 @@
+openresty: erb $HOME/config/nginx.conf.erb > $HOME/config/nginx.conf && nginx -c $HOME/config/nginx.conf
