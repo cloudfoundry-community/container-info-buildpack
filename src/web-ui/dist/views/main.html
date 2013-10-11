@@ -6,15 +6,19 @@
 </div>
 
 <div class="row">
-    <h4>Browse container filesystem</h4>
-    <iframe src="/root/" width="100%" height="300px"></iframe>
+    <h4>Run remote command</h4>
+    <p>
+        <input ng-model="cmd" placeholder="eg: ls app">
+        <button ng-click="execute_command(cmd)">Execute</button>
+    </p>
+    <div class="results">
+        <pre>{{cmd_results}}</pre>
+    </div>
 </div>
 
 <div class="row">
-    <h4>Run remote command</h4>
-    <input id="cmd" name="cmd" placeholder="eg: ls app">
-    <button>Execute</button>
-    <iframe src="/exec?cmd=env" width="100%" height="150px"></iframe>
+    <h4>Browse container filesystem</h4>
+    <iframe src="/root/" width="100%" height="300px"></iframe>
 </div>
 
 <div class="footer">
