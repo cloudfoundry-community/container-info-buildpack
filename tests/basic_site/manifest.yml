@@ -1,7 +1,7 @@
 ---
 applications:
 - name: container-info-test
-  memory: 128M
+  memory: 64M
   instances: 1
   host: container-info-test
   domain: cfapps.io
