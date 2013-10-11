@@ -9,8 +9,12 @@
     <h4>Run remote command</h4>
     <form class="form-inline" role="form">
         <div class="form-group">
-            <input class="form-control" style="width:200px" ng-model="cmd" placeholder="eg: ls app">
+            <input class="form-control" style="width:200px" ng-model="cmd" placeholder="eg: ls app"></input>
             <button type="submit" class="btn btn-primary" ng-click="execute_command(cmd)">Execute</button>
+        </div>
+        <div>eg:
+            <a ng-click="execute_command('pstree -a')">pstree -a</a>
+            <a ng-click="execute_command('free -m')">free -m</a>
         </div>
     </form>
     <div class="top-buffer">
