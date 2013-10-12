@@ -41,6 +41,9 @@ VENDORED_OPENRESTY="${BUILD_DIR}/vendor/openresty"
 VENDORED_FOREGO="${BUILD_DIR}/vendor/forego"
 VENDORED_GEMS="${BUILD_DIR}/vendor/gems"
 
+echo "-----> Describing compile environment"
+$COMPILE_BUILDPACK_DIR/bin/describe_compile_env $1 $2 | indent
+
 echo "-----> Download and unpack packages into app/vendor/"
 mkdir -p ${BUILD_DIR}/vendor
 
