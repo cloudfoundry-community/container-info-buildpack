@@ -76,7 +76,7 @@ cp $COMPILE_BUILDPACK_DIR/config/Procfile ${BUILD_DIR}
 echo "-----> Building runtime environment"
 mkdir -p $BUILD_DIR/.profile.d
 echo "export PATH=\"\$HOME/vendor/gems/bin:\$HOME/vendor/openresty/nginx/sbin:\$PATH\"" > $BUILD_DIR/.profile.d/default_env.sh
-echo "export SETIN=profile.d" > $BUILD_DIR/.profile.d/test_setting.sh
+echo "export CAN_SET_IN_.PROFILE.D=true" > $BUILD_DIR/.profile.d/test_setting.sh
 
 
 
