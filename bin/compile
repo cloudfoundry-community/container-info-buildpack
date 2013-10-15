@@ -57,11 +57,11 @@ echo "export PATH=\"\$HOME/vendor/bin:\$PATH\"" > $BUILD_DIR/.profile.d/forego.s
 echo "Installing OpenResty (Nginx app server) $OPENRESTY_VERSION" | indent
 package_download "${OPENRESTY_URL}" "${VENDORED_OPENRESTY}"
 echo "Fixing luajit/lib symlinks..." | indent
-pushd ${VENDORED_OPENRESTY}/luajit/lib | indent
+pushd ${VENDORED_OPENRESTY}/luajit/lib > /dev/null
 ln -s libluajit-5.1.so.2.0.2 libluajit-5.1.so.2
 ln -s libluajit-5.1.so.2.0.2 libluajit-5.1.so
-popd | indent
-mkdir -p ${BUILD_DIR}/config | indent
+popd 
+mkdir -p ${BUILD_DIR}/config > /dev/null
 cp $COMPILE_BUILDPACK_DIR/config/nginx.conf.erb ${BUILD_DIR}/config | indent
 echo "export PATH=\"\$HOME/vendor/openresty/nginx/sbin:\$PATH\"" > $BUILD_DIR/.profile.d/openresty_env.sh
 echo "export LD_LIBRARY_PATH=\"\$HOME/vendor/openresty/luajit/lib:\$LD_LIBRARY_PATH\"" >> $BUILD_DIR/.profile.d/openresty_env.sh
