@@ -4,7 +4,7 @@
 
 cat <<EOF
 config_vars:
-  DOESNT: work
+  SETIN: bin/release
 default_process_types:
   web: \$HOME/vendor/forego start -p \$PORT
 EOF
