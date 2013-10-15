@@ -4,7 +4,7 @@
 
 cat <<EOF
 config_vars:
-  CAN_SET_IN_RELEASE: true
+  CAN_SET_IN_RELEASE: doesnt_seem_to_work
 default_process_types:
-  web: \$HOME/vendor/forego start -p \$PORT
+  web: forego start -p \$PORT
 EOF

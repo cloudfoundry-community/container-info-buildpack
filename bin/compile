@@ -38,45 +38,55 @@ OPENRESTY_URL="http://ci-labs-buildpack-downloads.s3.amazonaws.com/openresty/ope
 
 # vendor directories
 VENDORED_OPENRESTY="${BUILD_DIR}/vendor/openresty"
-VENDORED_FOREGO="${BUILD_DIR}/vendor/forego"
+VENDORED_FOREGO="${BUILD_DIR}/vendor/bin/forego"
 VENDORED_GEMS="${BUILD_DIR}/vendor/gems"
 
 echo "-----> Describing compile environment"
 $COMPILE_BUILDPACK_DIR/bin/describe_compile_env $1 $2 | indent
 
-echo "-----> Download and unpack packages into app/vendor/"
-mkdir -p ${BUILD_DIR}/vendor
+echo "-----> Download and configure packages into app/vendor/..."
+mkdir -p ${BUILD_DIR}/vendor/bin
+mkdir -p $BUILD_DIR/.profile.d
+echo "export CAN_SET_IN_PROFILED=true" > $BUILD_DIR/.profile.d/test_setting.sh
 
 echo "Installing ForeGo (latest from $FOREGO_URL)" | indent
 curl $FOREGO_URL -s -o $VENDORED_FOREGO
 chmod +x $VENDORED_FOREGO
+echo "export PATH=\"\$HOME/vendor/bin:\$PATH\"" > $BUILD_DIR/.profile.d/forego.sh
 
 echo "Installing OpenResty (Nginx app server) $OPENRESTY_VERSION" | indent
 package_download "${OPENRESTY_URL}" "${VENDORED_OPENRESTY}"
 echo "Fixing luajit/lib symlinks..." | indent
-pushd ${VENDORED_OPENRESTY}/luajit/lib
+pushd ${VENDORED_OPENRESTY}/luajit/lib | indent
 ln -s libluajit-5.1.so.2.0.2 libluajit-5.1.so.2
 ln -s libluajit-5.1.so.2.0.2 libluajit-5.1.so
-popd
+popd | indent
 mkdir -p ${BUILD_DIR}/config | indent
 cp $COMPILE_BUILDPACK_DIR/config/nginx.conf.erb ${BUILD_DIR}/config | indent
+echo "export PATH=\"\$HOME/vendor/openresty/nginx/sbin:\$PATH\"" > $BUILD_DIR/.profile.d/openresty_env.sh
+echo "export LD_LIBRARY_PATH=\"\$HOME/vendor/openresty/luajit/lib:\$LD_LIBRARY_PATH\"" >> $BUILD_DIR/.profile.d/openresty_env.sh
+echo "export LUAJIT_LIB=\"\$HOME/vendor/openresty/luajit/lib\"" >> $BUILD_DIR/.profile.d/openresty_env.sh
+echo "export LUAJIT_INC=\"\$HOME/vendor/openresty/luajit/include/luajit-2.0\"" >> $BUILD_DIR/.profile.d/openresty_env.sh
 
 echo "Installing Ohai" | indent
 mkdir $VENDORED_GEMS
 GEM_HOME=$VENDORED_GEMS gem install ohai --no-ri --no-rdoc | indent
+echo "export PATH=\"\$HOME/vendor/gems/bin:\$PATH\"" > $BUILD_DIR/.profile.d/gems.sh
+echo "export GEM_HOME=\"\$HOME/vendor/gems\"" >> $BUILD_DIR/.profile.d/gems.sh
+echo "export GEM_PATH=\"\$HOME/vendor/gems:\$GEM_PATH\"" >> $BUILD_DIR/.profile.d/gems.sh
 
 echo "Installing web-ui" | indent
 mkdir -p ${BUILD_DIR}/public | indent
 cp -R $COMPILE_BUILDPACK_DIR/src/web-ui/dist/* ${BUILD_DIR}/public
 
-echo "-----> Setup startup options (Procfile & .env)"
-cp $COMPILE_BUILDPACK_DIR/config/.env ${BUILD_DIR}
+echo "-----> Creating startup Procfile"
 cp $COMPILE_BUILDPACK_DIR/config/Procfile ${BUILD_DIR}
 
-echo "-----> Building runtime environment"
-mkdir -p $BUILD_DIR/.profile.d
-echo "export PATH=\"\$HOME/vendor/gems/bin:\$HOME/vendor/openresty/nginx/sbin:\$PATH\"" > $BUILD_DIR/.profile.d/default_env.sh
-echo "export CAN_SET_IN_PROFILED=true" > $BUILD_DIR/.profile.d/test_setting.sh
+
+
+
+
+
 
 
 
