@@ -16,6 +16,7 @@ BUILDPACK=$1
 
 echo "----> Staging buildpack ${BUILDPACK}"
 
+mkdir -p /app/tmp
 dir=$(TMPDIR=/app/tmp mktemp -d -t buildpackXXXXX)
 
 url=${BUILDPACK%#*}
