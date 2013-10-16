@@ -51,6 +51,7 @@ if [ "$url" != "" ]; then
     bash -x $dir/bin/compile /app /app/cache | tee $dir/staging-compile.log
 
     if [ $? != 0 ]; then
+      echo "ERROR: $dir/bin/compile /app /app/cache exited with $?"
       exit 1
     fi
 
