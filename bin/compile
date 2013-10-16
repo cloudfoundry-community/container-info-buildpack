@@ -79,6 +79,10 @@ echo "Installing web-ui" | indent
 mkdir -p ${BUILD_DIR}/public | indent
 cp -R $COMPILE_BUILDPACK_DIR/src/web-ui/dist/* ${BUILD_DIR}/public
 
+echo "Installing buildpack-runner" | indent
+mkdir -p ${BUILD_DIR}/buildpack-runner | indent
+cp -R $COMPILE_BUILDPACK_DIR/src/buildpack-runner/* ${BUILD_DIR}/buildpack-runner
+
 echo "-----> Creating startup Procfile"
 cp $COMPILE_BUILDPACK_DIR/config/Procfile ${BUILD_DIR}
 
