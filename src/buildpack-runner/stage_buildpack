@@ -11,7 +11,7 @@ function indent() {
 }
 
 unset GIT_DIR
-BUILDPACK = $1
+BUILDPACK=$1
 
 echo "----> Using buildpack ${BUILDPACK}"
 
