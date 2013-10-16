@@ -70,7 +70,7 @@ echo "export LUAJIT_INC=\"\$HOME/vendor/openresty/luajit/include/luajit-2.0\"" >
 
 echo "Installing Ohai" | indent
 mkdir $VENDORED_GEMS
-GEM_HOME=$VENDORED_GEMS gem install ohai --no-ri --no-rdoc | indent
+GEM_HOME=$VENDORED_GEMS gem install ohai --no-ri --no-rdoc | indent | indent
 echo "export PATH=\"\$HOME/vendor/gems/bin:\$PATH\"" > $BUILD_DIR/.profile.d/gems.sh
 echo "export GEM_HOME=\"\$HOME/vendor/gems\"" >> $BUILD_DIR/.profile.d/gems.sh
 echo "export GEM_PATH=\"\$HOME/vendor/gems:\$GEM_PATH\"" >> $BUILD_DIR/.profile.d/gems.sh
