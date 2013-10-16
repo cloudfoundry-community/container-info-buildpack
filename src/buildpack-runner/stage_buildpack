@@ -48,7 +48,7 @@ if [ "$url" != "" ]; then
 
   if [ $? == 0 ]; then
     echo "=====> Detected Framework: $framework"
-    $dir/bin/compile /app /app/cache
+    bash -x $dir/bin/compile /app /app/cache | tee $dir/staging-compile.log
 
     if [ $? != 0 ]; then
       exit 1
