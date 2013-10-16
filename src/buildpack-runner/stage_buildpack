@@ -13,11 +13,11 @@ function indent() {
 unset GIT_DIR
 BUILDPACK=$1
 
-
 echo "----> Staging buildpack ${BUILDPACK}"
 
 mkdir -p /app/tmp
-dir=$(TMPDIR=/app/tmp mktemp -d -t buildpackXXXXX)
+mkdir -p /app/cache
+dir=$(TMPDIR=/app/tmp mktemp -d -t buildpack-XXXXX)
 
 url=${BUILDPACK%#*}
 branch=${BUILDPACK#*#}
@@ -44,11 +44,11 @@ if [ "$url" != "" ]; then
   # we'll get errors later if these are needed and don't exist
   chmod -f +x $dir/bin/{detect,compile,release} || true
 
-  framework=$($dir/bin/detect $1)
+  framework=$($dir/bin/detect /app)
 
   if [ $? == 0 ]; then
     echo "=====> Detected Framework: $framework"
-    $dir/bin/compile $1 $2
+    $dir/bin/compile /app /app/cache
 
     if [ $? != 0 ]; then
       exit 1
