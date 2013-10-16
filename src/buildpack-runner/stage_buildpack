@@ -13,10 +13,10 @@ function indent() {
 unset GIT_DIR
 BUILDPACK=$1
 
-echo "----> Using buildpack ${BUILDPACK}"
 
-dir=$(mktemp -t buildpackXXXXX)
-rm -rf $dir
+echo "----> Staging buildpack ${BUILDPACK}"
+
+dir=$(TMPDIR=/app/tmp mktemp -d -t buildpackXXXXX)
 
 url=${BUILDPACK%#*}
 branch=${BUILDPACK#*#}
