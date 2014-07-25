@@ -58,6 +58,39 @@ Push successful! App 'container-info-test' available at http://container-info-te
 
 ```
 
+## Cloud Foundry Extensions - Offline Mode
+
+The primary purpose of extending the heroku buildpack is to cache system dependencies for firewalled or other non-internet accessible environments. This is called 'offline' mode.
+
+'offline' buildpacks can be used in any environment where you would prefer the dependencies to be cached instead of fetched from the internet.
+
+The list of what is cached is maintained in [bin/package](bin/package).
+
+Using cached system dependencies is accomplished by overriding curl during staging. See [bin/compile](bin/compile#L44-48)
+
+
+## Building
+1. Make sure you have fetched submodules
+
+  ```bash
+  git submodule update --init
+  ```
+
+1. Build the buildpack
+
+  ```bash
+  bin/package [ online | offline ]
+  ```
+
+1. Use in Cloud Foundry
+
+    Upload the buildpack to your Cloud Foundry and optionally specify it by name
+
+    ```bash
+    cf create-buildpack container-info-offline container-info_buildpack-offline-v.zip 1
+    cf push my_app -b container-info-offline
+    ```
+
 ## UI
 
 Giving you a web app through which you can "explore" the container environment

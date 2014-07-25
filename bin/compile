@@ -41,6 +41,12 @@ VENDORED_OPENRESTY="${BUILD_DIR}/vendor/openresty"
 VENDORED_FOREGO="${BUILD_DIR}/vendor/bin/forego"
 VENDORED_GEMS="${BUILD_DIR}/vendor/gems"
 
+# CF Common
+BUILDPACK_PATH=$COMPILE_BUILDPACK_DIR
+export BUILDPACK_PATH
+source $BUILDPACK_PATH/compile-extensions/lib/common
+# END CF Common
+
 echo "-----> Describing compile environment"
 $COMPILE_BUILDPACK_DIR/bin/describe_compile_env $1 $2 | indent
 

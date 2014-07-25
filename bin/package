@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+language='container-info'
+
+dependencies=(
+  'https://godist.herokuapp.com/projects/ddollar/forego/releases/current/linux-amd64/forego'
+  'http://ci-labs-buildpack-downloads.s3.amazonaws.com/openresty/openresty-1.2.8.6.tar.gz'
+)
+
+excluded_files=(
+  '.git/'
+  '.gitignore'
+  '.gitmodules'
+  'repos/'
+  'cf_spec/'
+  'log/'
+  'cf.Gemfile'
+  'cf.Gemfile.lock'
+  'bin/package'
+  'buildpack-packager/'
+)
+
+BIN="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $BIN/../buildpack-packager/lib/packager
+
+package_buildpack $@
