@@ -1,0 +1,10 @@
+nguage: bash
+script: ./bin/deploy
+deploy:
+  provider: releases
+  api_key:
+    secure: N8h9CW03k7JpAEPDSW0DQ/ttDVr6/Oi4jhhkPZ9BGcYe4ImtF9pYTqNFLHuSURYdx8U+FYL2iF1EWE6uMydQvAns33tiWdcTxGikCTg1bFLmAYeR2+7EraXZDF9x3qVhCuNua8yqB9d1mkdlDuAwDZpTVq2KXeLo8loyFhPJj9Q=
+  file: container-info-buildpack-offline.zip
+  on:
+    tags: true
+    all_branches: true

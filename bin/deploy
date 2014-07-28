@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+git submodule update --init
+bin/package offline
+mv ./*.zip container-info-buildpack-offline.zip
