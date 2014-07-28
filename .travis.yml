@@ -1,5 +1,5 @@
 nguage: bash
-script: ./bin/deploy
+script: "bin/deploy"
 deploy:
   provider: releases
   api_key:
