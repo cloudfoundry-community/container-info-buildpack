@@ -18,6 +18,8 @@ excluded_files=(
   'cf.Gemfile.lock'
   'bin/package'
   'buildpack-packager/'
+  '.travis.yml'
+  'bin/deploy'
 )
 
 BIN="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
