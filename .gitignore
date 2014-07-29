@@ -2,10 +2,12 @@
 *.rbc
 .bundle
 .config
+.idea
 coverage
 InstalledFiles
 lib/bundler/man
 pkg
+test.sh
 rdoc
 spec/reports
 test/tmp
