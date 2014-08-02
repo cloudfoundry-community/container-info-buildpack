@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 # bin/detect <build-dir>
-
-if [[ -f "$1/container-info" ]]; then
+if [[ -f "$1/container-info"]]; then
   echo "container-info-buildpack" && exit 0
 else
   exit 1
