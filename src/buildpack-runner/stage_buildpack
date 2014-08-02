@@ -40,7 +40,7 @@ if [ "$url" != "" ]; then
   if [ "$branch" != "" ]; then
     git checkout $branch >/dev/null 2>&1
   fi
-
+  git submodule update --init >/dev/null 2>&1
   # we'll get errors later if these are needed and don't exist
   chmod -f +x $dir/bin/{detect,compile,release} || true
 
@@ -54,14 +54,5 @@ if [ "$url" != "" ]; then
       echo "ERROR: $dir/bin/compile /app /app/cache exited with $?"
       exit 1
     fi
-
-    if [ -x $dir/bin/release ]; then
-      $dir/bin/release /app > $dir/last_pack_release.out
-    fi
   fi
-fi
-
-if [ -e $dir/last_pack_release.out ]; then
-  echo "Using release configuration from last framework $framework:" | indent
-  cat $dir/last_pack_release.out | indent
 fi
