@@ -48,7 +48,10 @@ http {
           ngx.say(result)
           handle:close()
       ';
-    } 
+    }
+    location ~ /. {
+        deny all;
+    }
 
   }
 }

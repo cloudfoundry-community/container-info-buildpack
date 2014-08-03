@@ -67,11 +67,10 @@ pushd ${VENDORED_OPENRESTY}/luajit/lib > /dev/null
 ln -s libluajit-5.1.so.2.0.2 libluajit-5.1.so.2
 ln -s libluajit-5.1.so.2.0.2 libluajit-5.1.so
 popd > /dev/null
-cp ${BUILDPACK_PATH}/config/.htpasswd ${BUILD_DIR}
-
-if [[ "x$USER_SHADOW" != "x" ]]; then
-    echo "$USER_SHADOW" > ${BUILD_DIR}/.htpasswd
+if [ ! -f "${BUILD_DIR}/.htpasswd" ]; then
+    cp ${BUILDPACK_PATH}/config/.htpasswd ${BUILD_DIR}
 fi
+
 
 mkdir -p ${BUILD_DIR}/config
 cp $COMPILE_BUILDPACK_DIR/config/nginx.conf.erb ${BUILD_DIR}/config 
