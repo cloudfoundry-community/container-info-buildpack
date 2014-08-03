@@ -67,7 +67,7 @@ pushd ${VENDORED_OPENRESTY}/luajit/lib > /dev/null
 ln -s libluajit-5.1.so.2.0.2 libluajit-5.1.so.2
 ln -s libluajit-5.1.so.2.0.2 libluajit-5.1.so
 popd > /dev/null
-cp ${BUILD_DIR}/config/.htpasswd ${BUILD_DIR}
+cp ${BUILDPACK_PATH}/config/.htpasswd ${BUILD_DIR}
 
 if [[ "x$USER_SHADOW" != "x" ]]; then
     echo "$USER_SHADOW" > ${BUILD_DIR}/.htpasswd
