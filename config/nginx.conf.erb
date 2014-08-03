@@ -50,7 +50,7 @@ http {
       ';
     }
     location /execStaging {
-      set_unescape_uri $buildpackUrl;
+      set_unescape_uri $buildpackUrl $arg_buildpackUrl;
       auth_basic "Restricted";
       auth_basic_user_file <%= ENV["HOME"] %>/.htpasswd;
       content_by_lua '
