@@ -23,16 +23,21 @@ http {
 
     location / {
        root <%= ENV["HOME"] %>/public;
+       auth_basic "Restricted";
+       auth_basic_user_file <%= ENV["HOME"] %>/.htpasswd;
     }
 
     location /root/ {
       alias /;
       autoindex on;
+      auth_basic "Restricted";
+      auth_basic_user_file <%= ENV["HOME"] %>/.htpasswd;
     }
 
     location /exec { 
       set_unescape_uri $cmd $arg_cmd;
-
+      auth_basic "Restricted";
+      auth_basic_user_file <%= ENV["HOME"] %>/.htpasswd;
       content_by_lua '
           local cmd = ngx.var["cmd"]
           ngx.print("command: ", cmd, "\\n")
