@@ -3,7 +3,16 @@ container-info-buildpack
 
 A buildpack that allows exploring around the Cloud Foundry runtime container.  Useful when creating other buildpacks to discover the staging and runtime environment setup / restrictions
 
-_NB!_ The app you deploy has *no* security.  Make sure you delete it when you are finished exploring
+It use:
+ - for web-ui part:
+  - [AngularJS](https://angularjs.org/) (for [MVVM](http://khanlou.com/2014/03/model-view-whatever/))
+  - [Bower](http://bower.io/) (a package manager for the web)
+  - [Grunt](http://gruntjs.com/) (a javascript task runner)
+  - [Openresty](http://openresty.org/) (Nginx server with lua scripting)
+ - for buildpack himself
+  - [Forego](https://github.com/ddollar/forego) (a [foreman](https://github.com/ddollar/foreman) port in go, foreman is use to run `Procfile`)
+
+_NB!_ By default login for the web-ui is `admin/admin` feel free to change it by placing a `.htpasswd` at your root app folder. (Prefer use the command `htpasswd` to create this file)
 
 ### Using
 
@@ -96,4 +105,29 @@ Using cached system dependencies is accomplished by overriding curl during stagi
 Giving you a web app through which you can "explore" the container environment
 
 ![Web UI](https://f.cloud.github.com/assets/227505/1314712/904f38ba-327a-11e3-97ea-0698d80a82b9.png)
+
+## Rebuild web-ui in the buildpack
+
+If you are contributing on the buildpack and particulary in the web-ui part you will have some trouble.
+You should know that you must work on `web-ui/app` not the `dist` one.
+
+When you finished to work on the web-ui you need to package it to make it go in `dist` folder to do this you need 3 things:
+
+ - First install [node.js](http://nodejs.org/)
+ - Install `bower` with npm with this command `npm install -g bower`
+ - Install `grunt` with npm with this command `npm install -g bower`
+
+Ok now you have your tools, next step is to go in command line to the folder `web-ui`.
+And now do this command:
+```bash
+$ npm install
+$ bower install
+$ grunt --force
+```
+
+Your dist folder is ready to be use, you've done.
+
+## Contributing
+
+Feel free to fork this project and post issues or/and pull request on the side of this page.
 
