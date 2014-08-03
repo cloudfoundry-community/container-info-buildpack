@@ -115,7 +115,7 @@ When you finished to work on the web-ui you need to package it to make it go in 
 
  - First install [node.js](http://nodejs.org/)
  - Install `bower` with npm with this command `npm install -g bower`
- - Install `grunt` with npm with this command `npm install -g bower`
+ - Install `grunt` with npm with this command `npm install -g grunt`
 
 Ok now you have your tools, next step is to go in command line to the folder `web-ui`.
 And now do this command:
