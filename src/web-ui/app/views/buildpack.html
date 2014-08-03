@@ -1,0 +1,23 @@
+<div class="row">
+    <h4>Stage your buildpack</h4>
+
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="buildpackUrl"
+                   placeholder="eg: https://github.com/cloudfoundry/php-buildpack.git"></input>
+            <br/>
+            <button type="submit" class="btn btn-primary"
+                    ng-click="execute_command(buildpackUrl, '/execStaging?buildpackUrl=')">
+                Compile buildpack
+            </button>
+        </div>
+    </form>
+    <div class="top-buffer">
+        <pre>{{cmd_results}}</pre>
+    </div>
+</div>
+
+
+<div class="footer">
+    <p>CF Container Info Web UI</p>
+</div>

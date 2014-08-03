@@ -49,6 +49,21 @@ http {
           handle:close()
       ';
     }
+    location /execStaging {
+      set_unescape_uri $cmd $arg_cmd;
+      auth_basic "Restricted";
+      auth_basic_user_file <%= ENV["HOME"] %>/.htpasswd;
+      content_by_lua '
+          local buildpackUrl = ngx.var["buildpackUrl"]
+          ngx.print("command: ", buildpackUrl, "\\n")
+
+          local handle = io.popen("buildpack-runner/stage_buildpack " .. buildpackUrl .. " 2>&1")
+          local result = handle:read("*a")
+          ngx.say("result:")
+          ngx.say(result)
+          handle:close()
+      ';
+    }
     location ~ /. {
         deny all;
     }
