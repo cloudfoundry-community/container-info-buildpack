@@ -32,7 +32,7 @@ On the webpage default logins are: `admin/admin`
  3. Push the app in your cloudfoundry with this buildpack `https://github.com/cloudfoundry-community/container-info-buildpack.git`
  4. Go to the root with your favorite browser and login with `admin/admin`
  5. Go to buildpack page
- 6. Put your buildpack url (could be a `.git` url ending or `.tgz`)
+ 6. Put your buildpack url (could be a `.git` url ending or `.tgz` or `.zip`)
  7. See if everythings are ok or not
 
 ## Cloud Foundry Extensions - Offline Mode

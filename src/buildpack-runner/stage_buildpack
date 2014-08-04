@@ -32,6 +32,9 @@ if [ "$url" != "" ]; then
   if [[ "$url" =~ \.tgz$ ]]; then
     mkdir -p "$dir"
     curl -s "$url" | tar xvz -C "$dir" >/dev/null 2>&1
+  elif [[ "$url" =~ \.zip$ ]]; then
+    mkdir -p "$dir"
+    curl -s "$url" | unzip -d "$dir" >/dev/null 2>&1
   else
     git clone $url $dir >/dev/null 2>&1
   fi
