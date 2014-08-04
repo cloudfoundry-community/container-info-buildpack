@@ -3,7 +3,7 @@
 
     <form class="form-inline" role="form">
         <div class="form-group">
-            <input type="text" class="form-control" ng-model="buildpackUrl" placeholder="eg: https://github.com/cloudfoundry/php-buildpack.git">
+            <input type="text" class="form-control" style="width: 400px" ng-model="buildpackUrl" placeholder="eg: https://github.com/cloudfoundry/php-buildpack.git">
             <br>
             <button type="submit" class="btn btn-primary" ng-click="execute_command(buildpackUrl, '/execStaging?buildpackUrl=')">
                 Compile buildpack

@@ -3,7 +3,7 @@
 
     <form class="form-inline" role="form">
         <div class="form-group">
-            <textarea class="form-control" ng-model="cmd" placeholder="eg: ls app"></textarea>
+            <input type="text" style="width: 400px" class="form-control" ng-model="cmd" placeholder="eg: ls app">
             <br>
             <button type="submit" class="btn btn-primary" ng-click="execute_command(cmd)">Execute</button>
         </div>
