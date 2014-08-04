@@ -17,54 +17,10 @@ _NB!_ By default login for the web-ui is `admin/admin` feel free to change it by
 ### Using
 
 Push a new "empty" app
-```
+```bash
 $ mkdir container_info && cd container_info
-$ touch killroy_was_here
-$ cf push --buildpack=git://github.com/cloudfoundry-community/container-info-buildpack.git --memory=64 --instances=1 --no-bind-services --no-create-services
-
-Name> container-info-test
-
-Creating container-info-test... OK
-
-1: container-info-test
-2: none
-Subdomain> container-info-test
-
-1: de.a9sapp.eu
-2: none
-Domain> de.a9sapp.eu
-
-Binding container-info-test.de.a9sapp.eu to container-info-test... OK
-Save configuration?> n
-
-Uploading container-info-test... OK
-Preparing to start container-info-test... OK
------> Downloaded app package (4.0K)
-Initialized empty Git repository in /tmp/buildpacks/container-info-buildpack.git/.git/
------> Download and unpack packages into app/vendor/
-       Installing ForeGo (latest from https://godist.herokuapp.com/projects/ddollar/forego/releases/current/linux-amd64/forego)
-       Installing OpenResty (Nginx app server) 1.2.8.6
-       Fixing luajit/lib symlinks...
-/tmp/staged/app/vendor/openresty/luajit/lib /tmp/staged
-/tmp/staged
-       Installing Ohai
-       Building native extensions.  This could take a while...
-       Successfully installed systemu-2.5.2
-       Successfully installed yajl-ruby-1.1.0
-       Successfully installed mixlib-cli-1.3.0
-       Successfully installed mixlib-config-2.0.0
-       Successfully installed mixlib-log-1.6.0
-       Successfully installed mixlib-shellout-1.2.0
-       Successfully installed ipaddress-0.8.0
-       Successfully installed ohai-6.18.0
-       8 gems installed
-       Installing web-ui
------> Setup startup options (Procfile & .env)
------> Uploading droplet (12M)
-Checking status of app 'container-info-test'...
-  1 of 1 instances running (1 running)
-Push successful! App 'container-info-test' available at http://container-info-test.de.a9sapp.eu
-
+$ touch container-info
+$ cf push container-info-test -m 64M  -b https://github.com/cloudfoundry-community/container-info-buildpack.git
 ```
 
 ## Cloud Foundry Extensions - Offline Mode
