@@ -16,12 +16,24 @@ _NB!_ By default login for the web-ui is `admin/admin` feel free to change it by
 
 ### Using
 
+For a simple test:
+
 Push a new "empty" app
 ```bash
 $ mkdir container_info && cd container_info
 $ touch container-info
 $ cf push container-info-test -m 64M  -b https://github.com/cloudfoundry-community/container-info-buildpack.git
 ```
+On the webpage default logins are: `admin/admin`
+
+To test your custom buildpack compile phase:
+ 1. Create a folder with source test
+ 2. Create a file or other things which will needs your detect script
+ 3. Push the app in your cloudfoundry with this buildpack `https://github.com/cloudfoundry-community/container-info-buildpack.git`
+ 4. Go to the root with your favorite browser and login with `admin/admin`
+ 5. Go to buildpack page
+ 6. Put your buildpack url (could be a `.git` url ending or `.tgz`)
+ 7. See if everythings are ok or not
 
 ## Cloud Foundry Extensions - Offline Mode
 
